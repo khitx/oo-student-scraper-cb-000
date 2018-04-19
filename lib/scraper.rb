@@ -23,13 +23,13 @@ class Scraper
     links = doc.css(".social-icon-container").children.css("a").map { |e| e.attribute('href').value}
     links.each do |link|
       if link.include?("linkedin")
-        student[:linkedin] = link
+        profile[:linkedin] = link
       elsif link.include?("github")
-        student[:github] = link
+        profile[:github] = link
       elsif link.include?("twitter")
-        student[:twitter] = link
+        profile[:twitter] = link
       else
-        student[:blog] = link
+        profile[:blog] = link
       end
     end
 
@@ -39,8 +39,8 @@ class Scraper
     #    :linkedin => doc.css("div.social-icon-container a[href*='linkedin']").attr("href").value,
     #    :github => doc.css("div.social-icon-container a[href*='github']").attr("href").value,
         #:blog => doc.css("div.social-icon-container a[href*='blog']").attr("href").value,
-        :profile_quote => doc.css("div.profile-quote").text,
-        :bio => doc.css("div.description-holder p").text
+        profile[:profile_quote] = doc.css("div.profile-quote").text,
+        profile[:bio] = doc.css("div.description-holder p").text
     #  }
     #else
     #  profile = {
