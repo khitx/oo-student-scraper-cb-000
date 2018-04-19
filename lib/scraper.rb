@@ -19,24 +19,38 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
     profile = {}
-    if doc.at_css("div.social-icon-container a[href*='twitter']") != nil
-      profile = {
-        :twitter => doc.css("div.social-icon-container a[href*='twitter']").attr("href").value,
-        :linkedin => doc.css("div.social-icon-container a[href*='linkedin']").attr("href").value,
-        :github => doc.css("div.social-icon-container a[href*='github']").attr("href").value,
+
+    links = doc.css(".social-icon-container").children.css("a").map { |e| e.attribute('href').value}
+    links.each do |link|
+      if link.include?("linkedin")
+        student[:linkedin] = link
+      elsif link.include?("github")
+        student[:github] = link
+      elsif link.include?("twitter")
+        student[:twitter] = link
+      else
+        student[:blog] = link
+      end
+    end
+
+    #if doc.at_css("div.social-icon-container a[href*='twitter']") != nil
+    #  profile = {
+    #    :twitter => doc.css("div.social-icon-container a[href*='twitter']").attr("href").value,
+    #    :linkedin => doc.css("div.social-icon-container a[href*='linkedin']").attr("href").value,
+    #    :github => doc.css("div.social-icon-container a[href*='github']").attr("href").value,
         #:blog => doc.css("div.social-icon-container a[href*='blog']").attr("href").value,
         :profile_quote => doc.css("div.profile-quote").text,
         :bio => doc.css("div.description-holder p").text
-      }
-    else
-      profile = {
+    #  }
+    #else
+    #  profile = {
     #    :twitter => doc.css("div.social-icon-container a[href*='twitter']").attr("href").value,
-        :linkedin => doc.css("div.social-icon-container a[href*='linkedin']").attr("href").value,
-        :github => doc.css("div.social-icon-container a[href*='github']").attr("href").value,
-        :profile_quote => doc.css("div.profile-quote").text,
-        :bio => doc.css("div.description-holder p").text
-      }
-    end
+    #    :linkedin => doc.css("div.social-icon-container a[href*='linkedin']").attr("href").value,
+    #    :github => doc.css("div.social-icon-container a[href*='github']").attr("href").value,
+    #    :profile_quote => doc.css("div.profile-quote").text,
+    #    :bio => doc.css("div.description-holder p").text
+    #  }
+    #end
   end
 
 end
