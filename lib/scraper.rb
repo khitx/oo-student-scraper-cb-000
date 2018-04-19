@@ -39,7 +39,7 @@ class Scraper
     #    :linkedin => doc.css("div.social-icon-container a[href*='linkedin']").attr("href").value,
     #    :github => doc.css("div.social-icon-container a[href*='github']").attr("href").value,
         #:blog => doc.css("div.social-icon-container a[href*='blog']").attr("href").value,
-        profile[:profile_quote] = doc.css("div.profile-quote").text,
+        profile[:profile_quote] = doc.css("div.profile-quote").text
         profile[:bio] = doc.css("div.description-holder p").text
     #  }
     #else
