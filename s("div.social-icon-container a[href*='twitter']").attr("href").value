@@ -1,0 +1,28 @@
+
+[1mFrom:[0m /home/khitx/oo-student-scraper-cb-000/lib/scraper.rb @ line 41 Scraper.scrape_profile_page:
+
+    [1;34m19[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_profile_page[0m(profile_url)
+    [1;34m20[0m:   doc = [1;34;4mNokogiri[0m::HTML(open(profile_url))
+    [1;34m21[0m:   profile = {}
+    [1;34m22[0m:   [1;34m#binding.pry[0m
+    [1;34m23[0m:   [1;34m#if doc.at_css("div.social-icon-container a[href*='blog']") != nil[0m
+    [1;34m24[0m:     profile = {
+    [1;34m25[0m:       [33m:twitter[0m => doc.css([31m[1;31m"[0m[31mdiv.social-icon-container a[href*='twitter'][1;31m"[0m[31m[0m).attr([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value,
+    [1;34m26[0m:       [33m:linkedin[0m => doc.css([31m[1;31m"[0m[31mdiv.social-icon-container a[href*='linkedin'][1;31m"[0m[31m[0m).attr([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value,
+    [1;34m27[0m:       [33m:github[0m => doc.css([31m[1;31m"[0m[31mdiv.social-icon-container a[href*='github'][1;31m"[0m[31m[0m).attr([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value,
+    [1;34m28[0m:       [1;34m#:blog => doc.css("div.social-icon-container a[href*='blog']").attr("href").value,[0m
+    [1;34m29[0m:       [33m:profile_quote[0m => doc.css([31m[1;31m"[0m[31mdiv.profile_quote[1;31m"[0m[31m[0m).text,
+    [1;34m30[0m:       [33m:bio[0m => doc.css([31m[1;31m"[0m[31mdiv.bio[1;31m"[0m[31m[0m).text
+    [1;34m31[0m:     }
+    [1;34m32[0m:   [1;34m#else[0m
+    [1;34m33[0m:   [1;34m#  profile = {[0m
+    [1;34m34[0m:   [1;34m#    :twitter => doc.css("div.social-icon-container a[href*='twitter']").attr("href").value,[0m
+    [1;34m35[0m:   [1;34m#    :linkedin => doc.css("div.social-icon-container a[href*='linkedin']").attr("href").value,[0m
+    [1;34m36[0m:   [1;34m#    :github => doc.css("div.social-icon-container a[href*='github']").attr("href").value,[0m
+    [1;34m37[0m:   [1;34m#    :profile_quote => doc.css("div.profile_quote").text,[0m
+    [1;34m38[0m:   [1;34m#    :bio => doc.css("div.bio").text[0m
+    [1;34m39[0m:   [1;34m#  }[0m
+    [1;34m40[0m:   [1;34m#end[0m
+ => [1;34m41[0m:     binding.pry
+    [1;34m42[0m: [32mend[0m
+
